@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10</title>
+</head>
+<body>
+    <p>10- Realice un formulario que pida el nombre, apellido y edad de una persona. Agregar un botón "enviar" para que al presionarlo verifique que el nombre y apellido no estén vacíos y la edad no sea negativa y mayor o igual a 18. Mostrar un mensaje con los resultados en un elemento "p".</p> <hr>
+
+    <form id="formulario">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre"> <br>
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" name="apellido"> <br>
+        <label for="edad">Edad</label>
+        <input type="number" id="edad" name="edad"><br>
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="mensaje"></p>
+    <script src="./script.js"></script>
+</body>
+</html>

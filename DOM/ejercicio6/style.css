@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    width: 80%;
+    height: 300px;
+    border: 1px solid black;
+}
+
+.item1,
+.item2,
+.item3{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.item1{
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
+
+.item2{
+    background-color: green;
+    width: 200px;
+    height: 200px;
+}
+
+.item3{
+    background-color: yellow;
+    width: 200px;
+    height: 200px;
+}
