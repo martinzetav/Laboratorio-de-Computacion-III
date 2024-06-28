@@ -3,6 +3,7 @@ function $(e){
 }
 
 const entrada = $("entrada");
+const formulario = $("formulario");
 
 
 formulario.onsubmit = (e) =>{
