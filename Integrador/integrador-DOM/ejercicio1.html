@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="contador">10</p>
+    <button id="btnIncrementar">Incrementar</button>
+    <button id="btnDecrementar">Decrementar</button>
+
+    <script>
+        const $ = e => document.getElementById(e);
+        const contador = $("contador");
+        const btnIncrementar = $("btnIncrementar");
+        const btnDecrementar = $("btnDecrementar");
+
+        const habilitar = () =>{
+            btnIncrementar.disabled = parseInt(contador.textContent) >= 20;
+            btnDecrementar.disabled = parseInt(contador.textContent) <= 0;
+        }
+
+        btnIncrementar.addEventListener("click", ()=>{
+            let valor = parseInt(contador.textContent);
+            valor++;
+            contador.textContent = valor;
+            habilitar();
+        })
+
+        btnDecrementar.addEventListener("click", ()=>{
+            let valor = parseInt(contador.textContent);
+            valor-=2;
+            contador.textContent = valor;
+            habilitar();
+        })
+
+
+    </script>
+</body>
+</html>
