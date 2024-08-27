@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="animal">Animal:</label>
+            <input type="text" id="nombre">
+        </div>
+        <div>
+            <label for="altura">Altura:</label>
+            <input type="number" id="altura">
+        </div>
+        <button type="submit" id="btnAgregar">Agregar</button>
+    </form>
+    <div>
+        <span id="altoBajo"></span>
+    </div>
+    <ul id="listado"></ul>
+
+    <script>
+        const $ = e => document.getElementById(e);
+        const nombre = $("nombre");
+        const altura = $("altura");
+        const btnAgregar = $("btnAgregar");
+        const listado = $("listado");
+        const altoBajo = $("altoBajo");
+        const animales = [];
+        
+        
+        btnAgregar.addEventListener("click", (e)=>{
+            e.preventDefault();
+            if(nombre.value.trim() != "" && parseFloat(altura.value) > 0){
+                const nuevoAnimal = {nombre: nombre.value, altura: parseFloat(altura.value)};
+                const existe = animales.some(animal => animal.nombre.toUpperCase() == nuevoAnimal.nombre.toUpperCase());
+                if(!existe){
+                    animales.push(nuevoAnimal);
+                    nombre.value = "";
+                    altura.value = "";
+
+                    const item = document.createElement("li");
+                    item.textContent = `${nuevoAnimal.nombre}  (${nuevoAnimal.altura}m)`;
+                    listado.appendChild(item);
+
+                    let masAlto = animales[0];
+                    let masBajo = animales[0];
+
+                    animales.forEach(animal =>{
+                        if(animal.altura > masAlto.altura){
+                            masAlto = animal;
+                        }
+                        if(animal.altura < masBajo.altura){
+                            masBajo = animal;
+                        }
+                    })
+
+                    altoBajo.textContent = `El animal mas ALTO es ${masAlto.nombre} (${masAlto.altura}m) y el animal mas BAJO es ${masBajo.nombre} (${masBajo.altura}m)`;
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
