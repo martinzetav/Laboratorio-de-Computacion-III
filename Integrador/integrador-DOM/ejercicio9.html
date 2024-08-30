@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre">
+        </div>
+        <div>
+            <label for="peso">Peso:</label>
+            <input type="number" id="peso">
+        </div>
+        <button type="submit" id="btnAgregar">Agregar</button>
+    </form>
+    <ul id="listado"></ul>
+    <div>
+        <span id="livianaPesada"></span>
+    </div>
+
+    <script>
+        const $ = e => document.getElementById(e);
+        const nombre = $("nombre");
+        const peso = $("peso");
+        const btnAgregar = $("btnAgregar");
+        const listado = $("listado");
+        const livianaPesada = $("livianaPesada");
+        const personas = [];
+        btnAgregar.addEventListener("click", (e)=>{
+            e.preventDefault();
+            const nuevaPersona = {nombre: nombre.value, peso: parseFloat(peso.value)};
+            const existe = personas.some(persona => persona.nombre.toUpperCase() == nuevaPersona.nombre.toUpperCase());
+            if(nuevaPersona.nombre.trim() != "" && nuevaPersona.peso > 0.0 && !existe){
+                personas.push(nuevaPersona);
+                nombre.value = "";
+                peso.value = "";
+                const item = document.createElement("li");
+                item.textContent = `${nuevaPersona.nombre} (${nuevaPersona.peso} kg)`;
+                listado.appendChild(item);
+
+                const masLivina = personas.reduce((liviana, persona) => (
+                    persona.peso < liviana.peso ? persona : liviana
+                ), personas[0]);
+                const masPesada = personas.reduce((pesada, persona) =>(
+                    persona.peso > pesada.peso ? persona : pesada
+                ), personas[0]);
+
+                livianaPesada.textContent = `La persona MAS LIVIANA es ${masLivina.nombre} con (${masLivina.peso} kg) y la persona MAS PESADA es ${masPesada.nombre} con (${masPesada.peso} kg).`;
+            }
+        })
+    </script>
+</body>
+</html>
