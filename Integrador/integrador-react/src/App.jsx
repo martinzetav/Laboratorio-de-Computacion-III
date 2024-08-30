@@ -1,3 +1,4 @@
+import Ejercicio10 from "./components/Ejercicio10"
 import Ejercicio2 from "./components/Ejercicio2"
 import Ejercicio3 from "./components/Ejercicio3"
 import Ejercicio5 from "./components/Ejercicio5"
@@ -13,7 +14,8 @@ function App() {
       {/* <Ejercicio5/> */}
       {/* <Ejercicio6/> */}
       {/* <Ejercicio7/> */}
-      <Ejercicio8/>
+      {/* <Ejercicio8/> */}
+      <Ejercicio10/>
     </>
   )
 }
