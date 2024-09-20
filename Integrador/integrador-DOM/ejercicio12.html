@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre">
+    </div>
+    <div>
+        <label for="distancia">Distancia:</label>
+        <input type="number" id="distancia">
+    </div>
+    <button id="btnAdd">Agregar Tramo</button>
+    <ul id="listado"></ul>
+    <div>
+        <span id="promedio"></span>
+    </div>
+    <div>
+        <span id="largoCorto"></span>
+    </div>
+
+    <script>
+        const $ = e => document.getElementById(e);
+        const nombre = $("nombre");
+        const distancia = $("distancia");
+        const btnAdd = $("btnAdd");
+        const listado = $("listado");
+        const promedio = $("promedio");
+        const largoCorto = $("largoCorto");
+        const listaTramos = [];
+
+        btnAdd.addEventListener("click", ()=>{
+            if(nombre.value.trim() != "" && parseFloat(distancia.value) > 0){
+                const nuevoTramo = {nombre: nombre.value, distancia: parseFloat(distancia.value)};
+                listaTramos.push(nuevoTramo);
+                nombre.value = "";
+                distancia.value = "";
+
+                const item = document.createElement("li");
+                item.textContent = `Tramo: ${nuevoTramo.nombre} - Distancia: ${nuevoTramo.distancia}`;
+                listado.appendChild(item);
+
+                const totalTramos = listaTramos.reduce((ac, tramo) => ac + tramo.distancia, 0.0);
+                const prom = totalTramos / listaTramos.length;
+                promedio.textContent = `El promedio de distancias es de ${prom}`;
+
+                const masLargo = listaTramos.reduce((largo, tramo) => parseFloat(tramo.distancia) > parseFloat(largo.distancia) ? tramo : largo, listaTramos[0]);
+                const masCorto = listaTramos.reduce((corto, tramo) => parseFloat(tramo.distancia) < parseFloat(corto.distancia) ? tramo : corto, listaTramos[0]);
+
+                largoCorto.textContent = `El tramo mas largo es ${masLargo.nombre} con ${masLargo.distancia} km y el tramo mas corto es ${masCorto.nombre} con ${masCorto.distancia} km`;
+            }
+        })
+
+    </script>
+    
+</body>
+</html>
